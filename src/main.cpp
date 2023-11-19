@@ -12,6 +12,7 @@
 #include "color.h"
 #include "object.h"
 #include "sphere.h"
+#include "cube.h"
 #include "light.h"
 #include "camera.h"
 
@@ -142,10 +143,12 @@ void setUp() {
         0.1f
     );
 
-    objects.push_back(new Sphere(glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, rubber));
-    objects.push_back(new Sphere(glm::vec3(-1.0f, 0.0f, -4.0f), 1.0f, ivory));
-    objects.push_back(new Sphere(glm::vec3(1.0f, 0.0f, -4.0f), 1.0f, mirror));
-    objects.push_back(new Sphere(glm::vec3(0.0f, 2.0f, -4.0f), 1.0f, glass));
+    //objects.push_back(new Sphere(glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, rubber));
+    //objects.push_back(new Sphere(glm::vec3(-1.0f, 0.0f, -4.0f), 1.0f, ivory));
+    //objects.push_back(new Sphere(glm::vec3(1.0f, 0.0f, -4.0f), 1.0f, mirror));
+    //objects.push_back(new Sphere(glm::vec3(0.0f, 2.0f, -4.0f), 1.0f, glass));
+
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), rubber));
 
 }
 
@@ -237,11 +240,9 @@ int main(int argc, char* argv[]) {
                         camera.move(1.0f);
                         break;
                     case SDLK_LEFT:
-                        print("left");
                         camera.rotate(-1.0f, 0.0f);
                         break;
                     case SDLK_RIGHT:
-                        print("right");
                         camera.rotate(1.0f, 0.0f);
                         break;
                  }
