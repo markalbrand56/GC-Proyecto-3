@@ -144,12 +144,30 @@ void setUp() {
         0.1f
     );
 
-    //objects.push_back(new Sphere(glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, rubber));
-    //objects.push_back(new Sphere(glm::vec3(-1.0f, 0.0f, -4.0f), 1.0f, ivory));
-    //objects.push_back(new Sphere(glm::vec3(1.0f, 0.0f, -4.0f), 1.0f, mirror));
-    //objects.push_back(new Sphere(glm::vec3(0.0f, 2.0f, -4.0f), 1.0f, glass));
+    // obsidiana
+    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 0.0f), glm::vec3(1.0f, -2.0f, 1.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -2.0f, 0.0f), glm::vec3(-1.0f, -1.0f, 1.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(-2.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 1.0f, 1.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(-1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 2.0f, 1.0f), rubber));
 
-    objects.push_back(new Cube(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f), rubber));
+    // bloque de oro
+    objects.push_back(new Cube(glm::vec3(-1.0f, 2.0f, 0.0f), glm::vec3(0.0f, 3.0f, 1.0f), ivory));
+
+    // lava
+    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 1.0f), glm::vec3(0.0f, -2.0f, 2.0f), glass));
+    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 1.0f), glm::vec3(1.0f, -2.0f, 2.0f), glass));
+
+    // nether brick
+    objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, 1.0f), glm::vec3(-1.0f, -2.0f, 2.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, 2.0f), glm::vec3(-1.0f, -2.0f, 3.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 2.0f), glm::vec3(0.0f, -2.0f, 3.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 2.0f), glm::vec3(1.0f, -2.0f, 3.0f), rubber));
+
+    // netherrack
+    objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, 1.0f), glm::vec3(2.0f, -2.0f, 2.0f), ivory));
+    objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, 0.0f), glm::vec3(2.0f, -2.0f, 1.0f), ivory));
 
 }
 
