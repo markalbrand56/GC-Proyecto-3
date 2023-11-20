@@ -166,7 +166,7 @@ void setUp() {
     );
 
     Material obsidiana(
-        Color(255, 255, 255),
+        Color(20, 0, 50),  // Tonos oscuros de púrpura/negro
         0.1f,
         1.0f,
         125.0f,
@@ -177,7 +177,7 @@ void setUp() {
     );
 
     Material oro(
-        Color(255, 255, 255),
+        Color(255, 215, 0),  // Amarillo dorado
         0.5,
         0.5,
         50.0f,
@@ -188,7 +188,7 @@ void setUp() {
     );
 
     Material netherBrick = {
-        Color(100, 100, 100),
+        Color(50, 0, 0),  // Tonos oscuros de rojo y negro
         0.1f,
         1.0f,
         125.0f,
@@ -199,7 +199,7 @@ void setUp() {
     };
 
     Material lava = {
-        Color(255, 255, 255),
+        Color(255, 69, 0),  // Tonos de naranja/rojo brillante
         0.1f,
         1.0f,
         125.0f,
@@ -210,7 +210,7 @@ void setUp() {
     };
 
     Material netherrack = {
-        Color(255, 255, 255),
+        Color(128, 0, 0),  // Tonos de rojo y beige
         0.1f,
         1.0f,
         125.0f,
