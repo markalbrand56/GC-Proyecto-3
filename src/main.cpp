@@ -104,7 +104,7 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
         Uint8 b = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel + 2];
         
         diffuseLight = Color(r / 255.0f, g / 255.0f, b / 255.0f);
-        diffuseLight = Color(r, g, b) * light.intensity * diffuseLightIntensity * shadowIntensity;
+        diffuseLight = Color(r, g, b) * light.intensity * diffuseLightIntensity * mat.albedo * shadowIntensity;
     }
 
     // If the material is reflective, cast a reflected ray
@@ -140,18 +140,18 @@ void setUp() {
 
     Material obsidiana(
         Color(20, 0, 50),  // Tonos oscuros de púrpura/negro
-        0.1f,
+        0.8f,
         1.0f,
         125.0f,
         0.0f,
-        0.0f,
+        0.1f,
         0.0f,
         IMG_Load("assets/textures/obsidian.png")
     );
 
     Material cObsidiana(
         Color(20, 0, 50),  // Tonos oscuros de púrpura/negro
-        0.1f,
+        0.9f,
         1.0f,
         125.0f,
         0.0f,
@@ -161,10 +161,10 @@ void setUp() {
     );
 
     Material oro(
-        Color(255, 215, 0),  // Amarillo dorado
-        0.5,
-        0.5,
-        50.0f,
+        Color(255, 215, 0),  
+        0.9,
+        0.1,
+        150.0f,
         0.2f,
         0.0f,
         0.0f,
@@ -173,9 +173,9 @@ void setUp() {
 
     Material netherBrick = {
         Color(50, 0, 0),  // Tonos oscuros de rojo y negro
-        0.1f,
-        1.0f,
-        125.0f,
+        0.9,
+        0.1,
+        10.0f,
         0.0f,
         0.0f,
         0.0f,
@@ -184,7 +184,7 @@ void setUp() {
 
     Material lava = {
         Color(255, 69, 0),  // Tonos de naranja/rojo brillante
-        0.1f,
+        0.9f,
         1.0f,
         125.0f,
         0.0f,
@@ -195,20 +195,21 @@ void setUp() {
 
     Material netherrack = {
         Color(128, 0, 0),  // Tonos de rojo y beige
-        0.1f,
-        1.0f,
-        125.0f,
+        0.9,
+        0.1,
+        10.0f,
         0.0f,
         0.0f,
         0.0f,
         IMG_Load("assets/textures/netherract.png")
     };
 
-    // DEBUG put one of each block
-/*     objects.push_back(new Cube(glm::vec3(-4.0f, -1.0f, 0.0f), glm::vec3(-3.0f, 0.0f, 1.0f), oro));
+/*     // DEBUG put one of each block
+    objects.push_back(new Cube(glm::vec3(-4.0f, -1.0f, 0.0f), glm::vec3(-3.0f, 0.0f, 1.0f), oro));
     objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), netherBrick));
-    objects.push_back(new Cube(glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), rubber)); */
-
+    objects.push_back(new Cube(glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(2.0f, -1.0f, 0.0f), glm::vec3(3.0f, 0.0f, 1.0f), obsidiana));
+ */
     // obsidiana
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 0.0f), glm::vec3(1.0f, -2.0f, 1.0f), obsidiana));
@@ -272,8 +273,6 @@ void setUp() {
     objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, -2.0f), glm::vec3(-1.0f, -2.0f, -1.0f), netherrack));
     objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -1.0f), glm::vec3(-2.0f, -2.0f, 0.0f), netherrack));
     objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -2.0f), glm::vec3(-2.0f, -2.0f, -1.0f), netherrack));
-
-
 }
 
 void render() {
