@@ -178,14 +178,47 @@ void setUp() {
 
     Material oro(
         Color(255, 255, 255),
+        0.5,
+        0.5,
+        50.0f,
+        0.2f,
+        0.0f,
+        0.0f,
+        IMG_Load("assets/textures/gold.png")
+    );
+
+    Material netherBrick = {
+        Color(100, 100, 100),
         0.1f,
         1.0f,
         125.0f,
         0.0f,
         0.0f,
         0.0f,
-        IMG_Load("assets/textures/gold.png")
-    );
+        IMG_Load("assets/textures/cracked_nether_brick.png")
+    };
+
+    Material lava = {
+        Color(255, 255, 255),
+        0.1f,
+        1.0f,
+        125.0f,
+        0.0f,
+        0.0f,
+        0.0f,
+        IMG_Load("assets/textures/lava.png")
+    };
+
+    Material netherrack = {
+        Color(255, 255, 255),
+        0.1f,
+        1.0f,
+        125.0f,
+        0.0f,
+        0.0f,
+        0.0f,
+        IMG_Load("assets/textures/netherrack.png")
+    };
 
     // obsidiana
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), obsidiana));
@@ -199,18 +232,18 @@ void setUp() {
     objects.push_back(new Cube(glm::vec3(-1.0f, 2.0f, 0.0f), glm::vec3(0.0f, 3.0f, 1.0f), oro));
 
     // lava
-    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 1.0f), glm::vec3(0.0f, -2.0f, 2.0f), glass));
-    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 1.0f), glm::vec3(1.0f, -2.0f, 2.0f), glass));
+    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 1.0f), glm::vec3(0.0f, -2.0f, 2.0f), lava));
+    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 1.0f), glm::vec3(1.0f, -2.0f, 2.0f), lava));
 
     // nether brick
-    objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, 1.0f), glm::vec3(-1.0f, -2.0f, 2.0f), rubber));
-    objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, 2.0f), glm::vec3(-1.0f, -2.0f, 3.0f), rubber));
-    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 2.0f), glm::vec3(0.0f, -2.0f, 3.0f), rubber));
-    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 2.0f), glm::vec3(1.0f, -2.0f, 3.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, 1.0f), glm::vec3(-1.0f, -2.0f, 2.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, 2.0f), glm::vec3(-1.0f, -2.0f, 3.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 2.0f), glm::vec3(0.0f, -2.0f, 3.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 2.0f), glm::vec3(1.0f, -2.0f, 3.0f), netherBrick));
 
     // netherrack
-    objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, 1.0f), glm::vec3(2.0f, -2.0f, 2.0f), ivory));
-    objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, 0.0f), glm::vec3(2.0f, -2.0f, 1.0f), ivory));
+    objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, 1.0f), glm::vec3(2.0f, -2.0f, 2.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, 0.0f), glm::vec3(2.0f, -2.0f, 1.0f), netherrack));
 
 }
 
