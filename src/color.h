@@ -45,6 +45,29 @@ struct Color {
         );
     }
 
+    // Overload the * operator to multiply colors
+    Color operator*(const Color& other) const {
+        return Color(
+            std::clamp(static_cast<Uint8>(r * other.r), Uint8(0), Uint8(255)),
+            std::clamp(static_cast<Uint8>(g * other.g), Uint8(0), Uint8(255)),
+            std::clamp(static_cast<Uint8>(b * other.b), Uint8(0), Uint8(255)),
+            std::clamp(static_cast<Uint8>(a * other.a), Uint8(0), Uint8(255))
+        );
+    }
+
+    static Color lerp(const Color& start, const Color& end, float t) {
+        // Clampeamos el factor de interpolación entre 0 y 1
+        t = std::clamp(t, 0.0f, 1.0f);
+
+        // Aplicamos la fórmula de interpolación lineal
+        return Color(
+            start.r + static_cast<Uint8>(t * (end.r - start.r)),
+            start.g + static_cast<Uint8>(t * (end.g - start.g)),
+            start.b + static_cast<Uint8>(t * (end.b - start.b)),
+            start.a + static_cast<Uint8>(t * (end.a - start.a))
+        );
+    }
+
     // Friend function to allow float * Color
     friend Color operator*(float factor, const Color& color);
 };

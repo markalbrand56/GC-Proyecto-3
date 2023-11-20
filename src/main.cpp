@@ -26,7 +26,7 @@ const float SHADOW_BIAS = 0.0001f;
 
 SDL_Renderer* renderer;
 std::vector<Object*> objects;
-Light light(glm::vec3(-1.0, 0, 10), 1.5f, Color(255, 255, 255));
+Light light(glm::vec3(0, 0, 10), 1.5f, Color(255, 255, 255));
 Camera camera(glm::vec3(0.0, 0.0, 5.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 10.0f);
 Skybox skybox("assets/sky.jpg");
 
@@ -41,7 +41,7 @@ float castShadow(const glm::vec3& shadowOrig, const glm::vec3& lightDir, const s
         if (obj != hitObject) {
             Intersect shadowIntersect = obj->rayIntersect(shadowOrig, lightDir);
             if (shadowIntersect.isIntersecting && shadowIntersect.dist > 0) {  // zbuffer?
-                const float shadowIntensity =  (1.0f - glm::min(1.0f, shadowIntersect.dist / glm::length(light.position - shadowOrig)));
+                const float shadowIntensity = (1.0f - glm::min(1.0f, shadowIntersect.dist / glm::length(light.position - shadowOrig)));
                 return shadowIntensity;
             }
         }
@@ -102,7 +102,8 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
         Uint8 r = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel];
         Uint8 g = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel + 1];
         Uint8 b = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel + 2];
-
+        
+        //diffuseLight = Color(r, g, b) * light.intensity * diffuseLightIntensity;
         diffuseLight = Color(r / 255.0f, g / 255.0f, b / 255.0f);
     }
 
@@ -128,6 +129,15 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
 
 
 void setUp() {
+    Material rubber = {
+        Color(80, 0, 0),   // diffuse
+        0.9,
+        0.1,
+        10.0f,
+        0.0f,
+        0.0f
+    };
+
     Material obsidiana(
         Color(20, 0, 50),  // Tonos oscuros de púrpura/negro
         0.1f,
@@ -193,6 +203,10 @@ void setUp() {
         0.0f,
         IMG_Load("assets/textures/netherract.png")
     };
+
+    // DEBUG
+/*     objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), rubber)); */
 
     // obsidiana
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), obsidiana));
@@ -265,14 +279,6 @@ void render() {
     float fov = 3.1415/3;
     for (int y = 0; y < SCREEN_HEIGHT; y++) {
         for (int x = 0; x < SCREEN_WIDTH; x++) {
-            /*
-            float random_value = static_cast<float>(std::rand())/static_cast<float>(RAND_MAX);
-            if (random_value < 0.0) {
-                continue;
-            }
-            */
-
-
             float screenX = (2.0f * (x + 0.5f)) / SCREEN_WIDTH - 1.0f;
             float screenY = -(2.0f * (y + 0.5f)) / SCREEN_HEIGHT + 1.0f;
             screenX *= ASPECT_RATIO;
