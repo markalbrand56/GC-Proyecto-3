@@ -200,9 +200,11 @@ void setUp() {
     objects.push_back(new Cube(glm::vec3(-2.0f, -2.0f, 0.0f), glm::vec3(-1.0f, -1.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(-2.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 1.0f, 1.0f), obsidiana));
-    objects.push_back(new Cube(glm::vec3(-1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 2.0f, 1.0f), obsidiana));
-    objects.push_back(new Cube(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 2.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(-1.0f, 2.0f, 0.0f), glm::vec3(0.0f, 3.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(0.0f, 2.0f, 0.0f), glm::vec3(1.0f, 3.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(1.0f, -2.0f, 0.0f), glm::vec3(2.0f, -1.0f, 1.0f), cObsidiana));
+    objects.push_back(new Cube(glm::vec3(1.0f, -1.0f, 0.0f), glm::vec3(2.0f, 0.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(2.0f, 1.0f, 1.0f), cObsidiana));
 
     // bloque de oro
     objects.push_back(new Cube(glm::vec3(-2.0f, 1.0f, 0.0f), glm::vec3(-1.0f, 2.0f, 1.0f), oro));
