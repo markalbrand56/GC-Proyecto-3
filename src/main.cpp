@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL_events.h>
 #include <SDL_render.h>
+#include <SDL_image.h>
 #include <cstdlib>
 #include <glm/ext/quaternion_geometric.hpp>
 #include <glm/geometric.hpp>
@@ -64,12 +65,12 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
     }
 
     if (!intersect.isIntersecting || recursion >= MAX_RECURSION_DEPTH) {
-        return skybox.getColor(rayDirection);  // Sky color
+        return skybox.getColor(rayDirection);  // Sky color
     }
 
     glm::vec3 lightDir = glm::normalize(light.position - intersect.point);
     glm::vec3 viewDir = glm::normalize(rayOrigin - intersect.point);
-    glm::vec3 reflectDir = glm::reflect(-lightDir, intersect.normal); 
+    glm::vec3 reflectDir = glm::reflect(-lightDir, intersect.normal);
 
     float shadowIntensity = castShadow(
         intersect.point + intersect.normal,
@@ -77,34 +78,54 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
 
     float diffuseLightIntensity = std::max(0.0f, glm::dot(intersect.normal, lightDir));
     float specReflection = glm::dot(viewDir, reflectDir);
-    
+
     Material mat = hitObject->material;
 
     float specLightIntensity = std::pow(std::max(0.0f, glm::dot(viewDir, reflectDir)), mat.specularCoefficient);
 
     Color diffuseLight = mat.diffuse * light.intensity * diffuseLightIntensity * mat.albedo * shadowIntensity;
+
     Color specularLight = light.color * light.intensity * specLightIntensity * mat.specularAlbedo * shadowIntensity;
 
-    
+    // If the material has a texture, apply texture mapping
+    if (mat.texture != nullptr) {
+        int textureWidth = mat.texture->w;
+        int textureHeight = mat.texture->h;
+
+        float u = glm::clamp(glm::dot(intersect.normal, glm::vec3(1.0, 0.0, 0.0)), 0.0f, 1.0f);
+        float v = glm::clamp(glm::dot(intersect.normal, glm::vec3(0.0, 1.0, 0.0)), 0.0f, 1.0f);
+
+        int texX = static_cast<int>(u * textureWidth) % textureWidth;
+        int texY = static_cast<int>(v * textureHeight) % textureHeight;
+
+        Uint8* pixels = static_cast<Uint8*>(mat.texture->pixels);
+        Uint8 r = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel];
+        Uint8 g = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel + 1];
+        Uint8 b = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel + 2];
+
+        diffuseLight = Color(r / 255.0f, g / 255.0f, b / 255.0f);
+    }
+
     // If the material is reflective, cast a reflected ray
     Color reflectedColor(0.0f, 0.0f, 0.0f);
     if (mat.reflectivity > 0) {
-        glm::vec3 offsetOrigin = intersect.point + intersect.normal * SHADOW_BIAS; 
+        glm::vec3 offsetOrigin = intersect.point + intersect.normal * SHADOW_BIAS;
         reflectedColor = castRay(offsetOrigin, reflectDir, recursion + 1);
     }
 
     // If the material is refractive, cast a refracted ray
     Color refractedColor(0.0f, 0.0f, 0.0f);
-    if (mat.transparency > 0) {        
+    if (mat.transparency > 0) {
         glm::vec3 refractDir = glm::refract(rayDirection, intersect.normal, mat.refractionIndex);
-        glm::vec3 offsetOrigin = intersect.point - intersect.normal * SHADOW_BIAS; // moving along opposite to normal for refraction ray
+        glm::vec3 offsetOrigin = intersect.point - intersect.normal * SHADOW_BIAS;
         refractedColor = castRay(offsetOrigin, refractDir, recursion + 1);
     }
 
     Color color = (diffuseLight + specularLight) * (1 - mat.reflectivity - mat.transparency) + reflectedColor * mat.reflectivity + refractedColor * mat.transparency;
 
     return color;
-} 
+}
+
 
 void setUp() {
     Material rubber = {
@@ -144,13 +165,24 @@ void setUp() {
         0.1f
     );
 
+    Material obsidiana(
+        Color(255, 255, 255),
+        0.1f,
+        1.0f,
+        125.0f,
+        0.0f,
+        0.0f,
+        0.0f,
+        IMG_Load("assets/textures/obsidian.png")
+    );
+
     // obsidiana
-    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), rubber));
-    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 0.0f), glm::vec3(1.0f, -2.0f, 1.0f), rubber));
-    objects.push_back(new Cube(glm::vec3(-2.0f, -2.0f, 0.0f), glm::vec3(-1.0f, -1.0f, 1.0f), rubber));
-    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), rubber));
-    objects.push_back(new Cube(glm::vec3(-2.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 1.0f, 1.0f), rubber));
-    objects.push_back(new Cube(glm::vec3(-1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 2.0f, 1.0f), rubber));
+    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 0.0f), glm::vec3(1.0f, -2.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -2.0f, 0.0f), glm::vec3(-1.0f, -1.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(-2.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 1.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(-1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 2.0f, 1.0f), obsidiana));
 
     // bloque de oro
     objects.push_back(new Cube(glm::vec3(-1.0f, 2.0f, 0.0f), glm::vec3(0.0f, 3.0f, 1.0f), ivory));

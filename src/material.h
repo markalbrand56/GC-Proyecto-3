@@ -10,4 +10,5 @@ struct Material {
   float reflectivity; // The reflectivity of the material
   float transparency; // The transparency of the material
   float refractionIndex;
+  SDL_Surface* texture = nullptr;
 };
