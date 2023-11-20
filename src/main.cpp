@@ -96,7 +96,7 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
         float v = glm::clamp(glm::dot(intersect.normal, glm::vec3(0.0, 1.0, 0.0)), 0.0f, 1.0f);
 
         int texX = static_cast<int>(u * textureWidth) % textureWidth;
-        int texY = static_cast<int>(v * textureHeight) % textureHeight;
+        int texY = static_cast<int>(v * textureHeight) % textureHeight;      
 
         Uint8* pixels = static_cast<Uint8*>(mat.texture->pixels);
         Uint8 r = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel];
@@ -204,13 +204,11 @@ void setUp() {
         IMG_Load("assets/textures/netherract.png")
     };
 
-/*     // DEBUG put one of each block
-    objects.push_back(new Cube(glm::vec3(-4.0f, -1.0f, 0.0f), glm::vec3(-3.0f, 0.0f, 1.0f), oro));
-    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), netherBrick));
+    // DEBUG put one of each block
+    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), cObsidiana));
     objects.push_back(new Cube(glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), rubber));
-    objects.push_back(new Cube(glm::vec3(2.0f, -1.0f, 0.0f), glm::vec3(3.0f, 0.0f, 1.0f), obsidiana));
- */
-    // obsidiana
+
+    /* // obsidiana
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 0.0f), glm::vec3(1.0f, -2.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(-2.0f, -2.0f, 0.0f), glm::vec3(-1.0f, -1.0f, 1.0f), obsidiana));
@@ -272,7 +270,7 @@ void setUp() {
     objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, -1.0f), glm::vec3(-1.0f, -2.0f, 0.0f), netherrack));
     objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, -2.0f), glm::vec3(-1.0f, -2.0f, -1.0f), netherrack));
     objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -1.0f), glm::vec3(-2.0f, -2.0f, 0.0f), netherrack));
-    objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -2.0f), glm::vec3(-2.0f, -2.0f, -1.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -2.0f), glm::vec3(-2.0f, -2.0f, -1.0f), netherrack)); */
 }
 
 void render() {
