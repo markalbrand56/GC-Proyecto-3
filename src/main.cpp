@@ -217,7 +217,7 @@ void setUp() {
         0.0f,
         0.0f,
         0.0f,
-        IMG_Load("assets/textures/netherrack.png")
+        IMG_Load("assets/textures/netherract.png")
     };
 
     // obsidiana
@@ -227,9 +227,11 @@ void setUp() {
     objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(-2.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 1.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(-1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 2.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 2.0f, 1.0f), obsidiana));
+    objects.push_back(new Cube(glm::vec3(1.0f, -2.0f, 0.0f), glm::vec3(2.0f, -1.0f, 1.0f), obsidiana));
 
     // bloque de oro
-    objects.push_back(new Cube(glm::vec3(-1.0f, 2.0f, 0.0f), glm::vec3(0.0f, 3.0f, 1.0f), oro));
+    objects.push_back(new Cube(glm::vec3(-2.0f, 1.0f, 0.0f), glm::vec3(-1.0f, 2.0f, 1.0f), oro));
 
     // lava
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 1.0f), glm::vec3(0.0f, -2.0f, 2.0f), lava));
@@ -240,10 +242,37 @@ void setUp() {
     objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, 2.0f), glm::vec3(-1.0f, -2.0f, 3.0f), netherBrick));
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 2.0f), glm::vec3(0.0f, -2.0f, 3.0f), netherBrick));
     objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 2.0f), glm::vec3(1.0f, -2.0f, 3.0f), netherBrick));
+    
+    objects.push_back(new Cube(glm::vec3(-3.0f, 2.0f, 0.0f), glm::vec3(-2.0f, 3.0f, 1.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-2.0f, 2.0f, 0.0f), glm::vec3(-1.0f, 3.0f, 1.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-3.0f, 1.0f, 0.0f), glm::vec3(-2.0f, 2.0f, 1.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-3.0f, 0.0f, 0.0f), glm::vec3(-2.0f, 1.0f, 1.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-3.0f, -1.0f, 0.0f), glm::vec3(-2.0f, 0.0f, 1.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-3.0f, -2.0f, 0.0f), glm::vec3(-2.0f, -1.0f, 1.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, 0.0f), glm::vec3(-2.0f, -2.0f, 1.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, 1.0f), glm::vec3(-2.0f, -2.0f, 2.0f), netherBrick));
+    objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, 2.0f), glm::vec3(-2.0f, -2.0f, 3.0f), netherBrick));
 
     // netherrack
     objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, 1.0f), glm::vec3(2.0f, -2.0f, 2.0f), netherrack));
     objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, 0.0f), glm::vec3(2.0f, -2.0f, 1.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, 2.0f), glm::vec3(2.0f, -2.0f, 3.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(2.0f, -3.0f, 1.0f), glm::vec3(3.0f, -2.0f, 2.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(2.0f, -3.0f, 0.0f), glm::vec3(3.0f, -2.0f, 1.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(2.0f, -3.0f, 2.0f), glm::vec3(3.0f, -2.0f, 3.0f), netherrack));    
+    
+    objects.push_back(new Cube(glm::vec3(2.0f, -3.0f, -2.0f), glm::vec3(3.0f, -2.0f, -1.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(2.0f, -3.0f, -1.0f), glm::vec3(3.0f, -2.0f, 0.0f), netherrack));   
+    objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, -1.0f), glm::vec3(2.0f, -2.0f, 0.0f), netherrack));   
+    objects.push_back(new Cube(glm::vec3(1.0f, -3.0f, -2.0f), glm::vec3(2.0f, -2.0f, -1.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, -1.0f), glm::vec3(1.0f, -2.0f, 0.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, -2.0f), glm::vec3(1.0f, -2.0f, -1.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, -1.0f), glm::vec3(0.0f, -2.0f, 0.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, -2.0f), glm::vec3(0.0f, -2.0f, -1.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, -1.0f), glm::vec3(-1.0f, -2.0f, 0.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, -2.0f), glm::vec3(-1.0f, -2.0f, -1.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -1.0f), glm::vec3(-2.0f, -2.0f, 0.0f), netherrack));
+    objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -2.0f), glm::vec3(-2.0f, -2.0f, -1.0f), netherrack));
 
 }
 
