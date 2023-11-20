@@ -176,6 +176,17 @@ void setUp() {
         IMG_Load("assets/textures/obsidian.png")
     );
 
+    Material oro(
+        Color(255, 255, 255),
+        0.1f,
+        1.0f,
+        125.0f,
+        0.0f,
+        0.0f,
+        0.0f,
+        IMG_Load("assets/textures/gold.png")
+    );
+
     // obsidiana
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 0.0f), glm::vec3(1.0f, -2.0f, 1.0f), obsidiana));
@@ -185,7 +196,7 @@ void setUp() {
     objects.push_back(new Cube(glm::vec3(-1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 2.0f, 1.0f), obsidiana));
 
     // bloque de oro
-    objects.push_back(new Cube(glm::vec3(-1.0f, 2.0f, 0.0f), glm::vec3(0.0f, 3.0f, 1.0f), ivory));
+    objects.push_back(new Cube(glm::vec3(-1.0f, 2.0f, 0.0f), glm::vec3(0.0f, 3.0f, 1.0f), oro));
 
     // lava
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 1.0f), glm::vec3(0.0f, -2.0f, 2.0f), glass));
