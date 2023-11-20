@@ -26,7 +26,7 @@ const float SHADOW_BIAS = 0.0001f;
 
 SDL_Renderer* renderer;
 std::vector<Object*> objects;
-Light light(glm::vec3(0, 0, 10), 1.5f, Color(255, 255, 255));
+Light light(glm::vec3(0, 0, 10), 1.0f, Color(255, 255, 255));
 Camera camera(glm::vec3(0.0, 0.0, 5.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 10.0f);
 Skybox skybox("assets/sky.jpg");
 
@@ -103,8 +103,8 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
         Uint8 g = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel + 1];
         Uint8 b = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel + 2];
         
-        //diffuseLight = Color(r, g, b) * light.intensity * diffuseLightIntensity;
         diffuseLight = Color(r / 255.0f, g / 255.0f, b / 255.0f);
+        diffuseLight = Color(r, g, b) * light.intensity * diffuseLightIntensity * shadowIntensity;
     }
 
     // If the material is reflective, cast a reflected ray
@@ -204,8 +204,9 @@ void setUp() {
         IMG_Load("assets/textures/netherract.png")
     };
 
-    // DEBUG
-/*     objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), obsidiana));
+    // DEBUG put one of each block
+/*     objects.push_back(new Cube(glm::vec3(-4.0f, -1.0f, 0.0f), glm::vec3(-3.0f, 0.0f, 1.0f), oro));
+    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), netherBrick));
     objects.push_back(new Cube(glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), rubber)); */
 
     // obsidiana
