@@ -357,7 +357,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Create a window
-    SDL_Window* window = SDL_CreateWindow("Hello World - FPS: 0", 
+    SDL_Window* window = SDL_CreateWindow("Raytracing - FPS: 0", 
                                           SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
                                           SCREEN_WIDTH, SCREEN_HEIGHT, 
                                           SDL_WINDOW_SHOWN);
