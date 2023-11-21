@@ -12,5 +12,9 @@
     - Netherack
     - Oro
     - Lava
+- [x] (5 puntos) por implementar reflexión en al menos uno de sus materiales
 - [ ] (10 puntos) por implementar refracción en al menos uno de sus materiales (debe tener sentido contextual en su escena)
-- [ ] (5 puntos) por implementar reflexión en al menos uno de sus materiales
+
+## Detalles
+Albedo, sombras y reflexión (oro)
+![Efectos de luz](https://github.com/markalbrand56/GC-Proyecto-3/blob/main/assets/efectos%20de%20luz.png)
