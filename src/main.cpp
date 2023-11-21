@@ -188,8 +188,8 @@ void setUp() {
         1.0f,  // specularAlbedo
         125.0f,  // specularCoefficient
         0.0f,  // reflectivity
-        0.5f,  // transparency
-        0.3f,  // refractionIndex
+        0.4f,  // transparency
+        0.1f,  // refractionIndex
         IMG_Load("assets/textures/lava.png")
     };
 
@@ -207,6 +207,7 @@ void setUp() {
     // DEBUG put one of each block
 /*     objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), cObsidiana));
     objects.push_back(new Cube(glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), rubber)); */
+    //objects.push_back(new Cube(glm::vec3(-1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 2.0f, 3.0f), cObsidiana));
 
     // obsidiana
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), obsidiana));
