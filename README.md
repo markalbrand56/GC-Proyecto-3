@@ -18,3 +18,6 @@
 ## Detalles
 Albedo, sombras y reflexión (oro)
 ![Efectos de luz](https://github.com/markalbrand56/GC-Proyecto-3/blob/main/assets/efectos%20de%20luz.png)
+
+## Video demosntrativo
+[![Mira el video](https://img.youtube.com/vi/tPPysdaV-YA/maxresdefault.jpg)](https://youtu.be/tPPysdaV-YA)
