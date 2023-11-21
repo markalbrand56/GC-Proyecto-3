@@ -26,7 +26,7 @@ const float SHADOW_BIAS = 0.0001f;
 
 SDL_Renderer* renderer;
 std::vector<Object*> objects;
-Light light(glm::vec3(0, 0, 10), 1.0f, Color(255, 255, 255));
+Light light(glm::vec3(5, 5, 10), 1.0f, Color(255, 255, 255));
 Camera camera(glm::vec3(0.0, 0.0, 5.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 10.0f);
 Skybox skybox("assets/sky.jpg");
 
@@ -92,11 +92,11 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
         int textureWidth = mat.texture->w;
         int textureHeight = mat.texture->h;
 
-        float u = glm::clamp(glm::dot(intersect.normal, glm::vec3(1.0, 0.0, 0.0)), 0.0f, 1.0f);
-        float v = glm::clamp(glm::dot(intersect.normal, glm::vec3(0.0, 1.0, 0.0)), 0.0f, 1.0f);
+        float u = intersect.u;
+        float v = intersect.v;
 
         int texX = static_cast<int>(u * textureWidth) % textureWidth;
-        int texY = static_cast<int>(v * textureHeight) % textureHeight;      
+        int texY = static_cast<int>(v * textureHeight) % textureHeight;    
 
         Uint8* pixels = static_cast<Uint8*>(mat.texture->pixels);
         Uint8 r = pixels[texY * mat.texture->pitch + texX * mat.texture->format->BytesPerPixel];
@@ -205,10 +205,10 @@ void setUp() {
     };
 
     // DEBUG put one of each block
-    objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), cObsidiana));
-    objects.push_back(new Cube(glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), rubber));
+/*     objects.push_back(new Cube(glm::vec3(-2.0f, -1.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 1.0f), cObsidiana));
+    objects.push_back(new Cube(glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), rubber)); */
 
-    /* // obsidiana
+    // obsidiana
     objects.push_back(new Cube(glm::vec3(-1.0f, -3.0f, 0.0f), glm::vec3(0.0f, -2.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(0.0f, -3.0f, 0.0f), glm::vec3(1.0f, -2.0f, 1.0f), obsidiana));
     objects.push_back(new Cube(glm::vec3(-2.0f, -2.0f, 0.0f), glm::vec3(-1.0f, -1.0f, 1.0f), obsidiana));
@@ -270,7 +270,7 @@ void setUp() {
     objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, -1.0f), glm::vec3(-1.0f, -2.0f, 0.0f), netherrack));
     objects.push_back(new Cube(glm::vec3(-2.0f, -3.0f, -2.0f), glm::vec3(-1.0f, -2.0f, -1.0f), netherrack));
     objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -1.0f), glm::vec3(-2.0f, -2.0f, 0.0f), netherrack));
-    objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -2.0f), glm::vec3(-2.0f, -2.0f, -1.0f), netherrack)); */
+    objects.push_back(new Cube(glm::vec3(-3.0f, -3.0f, -2.0f), glm::vec3(-2.0f, -2.0f, -1.0f), netherrack));
 }
 
 void render() {
