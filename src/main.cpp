@@ -26,7 +26,7 @@ const float SHADOW_BIAS = 0.0001f;
 
 SDL_Renderer* renderer;
 std::vector<Object*> objects;
-Light light(glm::vec3(5, 5, 10), 1.0f, Color(255, 255, 255));
+Light light(glm::vec3(5, 4, 10), 1.0f, Color(255, 255, 255));
 Camera camera(glm::vec3(0.0, 0.0, 5.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), 10.0f);
 Skybox skybox("assets/sky.jpg");
 
