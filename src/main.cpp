@@ -140,67 +140,67 @@ void setUp() {
 
     Material obsidiana(
         Color(20, 0, 50),  // Tonos oscuros de púrpura/negro
-        0.8f,
-        1.0f,
-        125.0f,
-        0.0f,
-        0.1f,
-        0.0f,
+        0.8f,  // albedo
+        0.8f,  // specularAlbedo 
+        100.0f,  // specularCoefficient
+        0.0f,  // reflectivity
+        0.0f,  // transparency
+        0.0f, // refractionIndex
         IMG_Load("assets/textures/obsidian.png")
     );
 
     Material cObsidiana(
         Color(20, 0, 50),  // Tonos oscuros de púrpura/negro
-        0.9f,
-        1.0f,
-        125.0f,
-        0.0f,
-        0.0f,
-        0.0f,
+        0.9f,  // albedo
+        1.0f,  // specularAlbedo
+        125.0f,  // specularCoefficient
+        0.0f,  // reflectivity
+        0.0f,  // transparency
+        0.0f,  // refractionIndex
         IMG_Load("assets/textures/crying_obsidian.png")
     );
 
     Material oro(
         Color(255, 215, 0),  
-        0.9,
-        0.1,
-        150.0f,
-        0.2f,
-        0.0f,
-        0.0f,
+        0.9,  // albedo
+        0.7,  // specularAlbedo
+        150.0f,  // specularCoefficient
+        0.2f,  // reflectivity
+        0.0f,  // transparency
+        0.0f,  // refractionIndex
         IMG_Load("assets/textures/gold.png")
     );
 
     Material netherBrick = {
         Color(50, 0, 0),  // Tonos oscuros de rojo y negro
-        0.9,
-        0.1,
-        10.0f,
-        0.0f,
-        0.0f,
-        0.0f,
+        0.8,  // albedo
+        0.1,  // specularAlbedo
+        10.0f,  // specularCoefficient
+        0.0f,  // reflectivity
+        0.0f,  // transparency
+        0.0f,  // refractionIndex
         IMG_Load("assets/textures/cracked_nether_brick.png")
     };
 
     Material lava = {
         Color(255, 69, 0),  // Tonos de naranja/rojo brillante
-        0.9f,
-        1.0f,
-        125.0f,
-        0.0f,
-        0.0f,
-        0.0f,
+        0.9f,  // albedo
+        1.0f,  // specularAlbedo
+        125.0f,  // specularCoefficient
+        0.0f,  // reflectivity
+        0.5f,  // transparency
+        0.3f,  // refractionIndex
         IMG_Load("assets/textures/lava.png")
     };
 
     Material netherrack = {
         Color(128, 0, 0),  // Tonos de rojo y beige
-        0.9,
-        0.1,
-        10.0f,
-        0.0f,
-        0.0f,
-        0.0f,
+        0.9,  // albedo
+        0.1,  // specularAlbedo
+        10.0f,  // specularCoefficient
+        0.0f,  // reflectivity
+        0.0f,  // transparency
+        0.0f,  // refractionIndex
         IMG_Load("assets/textures/netherract.png")
     };
 
